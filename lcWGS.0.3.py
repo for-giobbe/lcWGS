@@ -82,10 +82,10 @@ if args.subset is not None:
                 subprocess.call(['reformat.sh',arg1,arg2,arg3,'out=1.fq','out2=2.fq'],stdout=log_reformat, stderr=log_reformat)
 if args.subset is None:
         with open('log_reformat', 'w') as log_reformat:
-                subprocess.call(['reformat.sh',arg1,arg2,'READS=-1','out=trimmomatic_1P_reduced.fq','out2=trimmomatic_2P_reduced.fq'],stdout=log_reformat, stderr=log_reformat)
+                subprocess.call(['reformat.sh',arg1,arg2,'READS=-1','out=1.fq','out2=2.fq'],stdout=log_reformat, stderr=log_reformat)
 
 with open('log_spades', 'w') as log_mt_spades:
-	subprocess.call(["spades.py","-1", "trimmomatic_1P_reduced.fq", "-2", "trimmomatic_2P_reduced.fq",
+	subprocess.call(["spades.py","-1", "1.fq", "-2", "2.fq",
 	"-o","folder_mt_spades", "-t", args.threads, "--cov-cutoff", "off"],stdout=log_mt_spades, stderr=log_mt_spades)
 
 mt_seqenc = open("mtcontig.fa",'w')
